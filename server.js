@@ -5,6 +5,10 @@ const port = process.env.PORT || 5000;
 
 const youtubeStream = require('youtube-audio-stream');
 
+const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+const ffmpeg = require('fluent-ffmpeg');
+ffmpeg.setFfmpegPath(ffmpegPath);
+
 app.use(cors());
 
 app.listen(port, () => console.log(`Listening on port ${port}`)); 
@@ -20,3 +24,5 @@ app.get('/youtube/:videoId', (req, res) => {
       res.status(500).send(exception);
   }
 }); 
+
+module.exports = app;
