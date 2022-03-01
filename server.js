@@ -9,6 +9,9 @@ app.use(cors());
 
 app.listen(port, () => console.log(`Listening on port ${port}`)); 
 
+app.get('/', (req, res) => {
+    res.send("Hello api");
+})
 
 app.get('/youtube/:videoId', (req, res) => { 
   try {
