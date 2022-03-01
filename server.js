@@ -21,4 +21,4 @@ app.get('/youtube/:videoId', (req, res) => {
   }
 }); 
 
-module.exports = serverless(app);
+module.exports = app;
