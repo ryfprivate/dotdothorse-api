@@ -1,24 +1,27 @@
-const express = require('express'); 
+const express = require('express');
 const cors = require('cors');
-const app = express(); 
+const app = express();
 const port = process.env.PORT || 5000;
 
 const youtubeStream = require('youtube-audio-stream');
 
-app.use(cors());
+const corsOptions = {
+    origin: ['https://dotdothorse.com', '/\.dotdothorse\.com$/'],
+    optionsSuccessStatus: 200
+}
 
-app.listen(port, () => console.log(`Listening on port ${port}`)); 
+app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.get('/', (req, res) => {
-    res.send("Hello api");
+    res.send("dotdothorse youtube audio api");
 })
 
-app.get('/youtube/:videoId', (req, res) => { 
-  try {
-      youtubeStream(req.params.videoId).pipe(res);
-  } catch (exception) {
-      res.status(500).send(exception);
-  }
-}); 
+app.get('/youtube/:videoId', cors(corsOptions), (req, res) => {
+    try {
+        youtubeStream(req.params.videoId).pipe(res);
+    } catch (exception) {
+        res.status(500).send(exception);
+    }
+});
 
 module.exports = app;
