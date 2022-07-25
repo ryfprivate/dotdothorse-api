@@ -6,7 +6,7 @@ const port = process.env.PORT || 5000;
 const youtubeStream = require('youtube-audio-stream');
 
 const corsOptions = {
-    origin: ['https://dotdothorse.com', '/\.dotdothorse\.com$/'],
+    origin: ['https://dotdothorse.com', 'https://games.dotdothorse.com'],
     optionsSuccessStatus: 200
 }
 
