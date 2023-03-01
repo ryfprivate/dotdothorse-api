@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 app.get('/:videoId', cors(), (req, res) => {
     const videoId = req.params.videoId;
     try {
-        ytdl(`https://www.youtube.com/watch?v=${videoId}`, { quality: 'highestaudio' })
+        ytdl(`https://www.youtube.com/watch?v=${videoId}`, { quality: 'lowestaudio' })
             .pipe(res);
     } catch (exception) {
         res.status(500).send(exception);
