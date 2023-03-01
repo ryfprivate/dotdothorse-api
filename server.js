@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 //     }
 // });
 
-app.get('/:videoId', cors(corsOptions), (req, res) => {
+app.get('/:videoId', cors(), (req, res) => {
     const videoId = req.params.videoId;
     try {
         ytdl(`https://www.youtube.com/watch?v=${videoId}`, { quality: 'highestaudio' })
