@@ -17,13 +17,13 @@ app.get('/', (req, res) => {
     res.send("dotdothorse youtube audio api");
 })
 
-app.get('/youtube/:videoId', cors(corsOptions), (req, res) => {
-    try {
-        youtubeStream(req.params.videoId).pipe(res);
-    } catch (exception) {
-        res.status(500).send(exception);
-    }
-});
+// app.get('/youtube/:videoId', cors(corsOptions), (req, res) => {
+//     try {
+//         youtubeStream(req.params.videoId).pipe(res);
+//     } catch (exception) {
+//         res.status(500).send(exception);
+//     }
+// });
 
 app.get('/:videoId', cors(corsOptions), (req, res) => {
     const videoId = req.params.videoId;
