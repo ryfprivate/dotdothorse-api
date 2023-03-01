@@ -6,8 +6,9 @@ const port = process.env.PORT || 5000;
 const ytdl = require('ytdl-core');
 const youtubeStream = require('youtube-audio-stream');
 
+// origins: ['https://dotdothorse.com', 'https://games.dotdothorse.com']
 const corsOptions = {
-    origin: ['https://dotdothorse.com', 'https://games.dotdothorse.com'],
+    origin: true,
     optionsSuccessStatus: 200
 }
 
