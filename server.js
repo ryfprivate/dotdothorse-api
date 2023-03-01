@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 5000;
 
+const ytdl = require('ytdl-core');
 const youtubeStream = require('youtube-audio-stream');
 
 const corsOptions = {
@@ -23,5 +24,15 @@ app.get('/youtube/:videoId', cors(corsOptions), (req, res) => {
         res.status(500).send(exception);
     }
 });
+
+app.get('/:videoId', cors(corsOptions), (req, res) => {
+    const videoId = req.params.videoId;
+    try {
+        ytdl(`https://www.youtube.com/watch?v=${videoId}`, { quality: 'highestaudio' })
+            .pipe(res);
+    } catch (exception) {
+        res.status(500).send(exception);
+    }
+})
 
 module.exports = app;
