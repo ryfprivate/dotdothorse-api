@@ -25,10 +25,18 @@ app.get('/', (req, res) => {
 //     }
 // });
 
-app.get('/:videoId', cors(), (req, res) => {
+app.get('/youtube/:videoId', cors(), (req, res) => {
     const videoId = req.params.videoId;
+    // ytdl(`https://www.youtube.com/watch?v=${videoId}`, {
+    //     quality: 'lowestaudio'
+    // }).on('error', (err) => res.status(500).send(err))
+    //     .pipe(res);
     try {
         ytdl(`https://www.youtube.com/watch?v=${videoId}`, { quality: 'lowestaudio' })
+            .on('error', (err) => {
+                console.log('error: ', err)
+                throw err
+            })
             .pipe(res);
     } catch (exception) {
         res.status(500).send(exception);
