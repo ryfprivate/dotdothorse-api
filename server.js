@@ -17,13 +17,10 @@ app.get('/', (req, res) => {
     res.send("dotdothorse youtube audio api");
 })
 
-// app.get('/youtube/:videoId', cors(corsOptions), (req, res) => {
-//     try {
-//         youtubeStream(req.params.videoId).pipe(res);
-//     } catch (exception) {
-//         res.status(500).send(exception);
-//     }
-// });
+const ytdlOptions = {
+    quality: 'lowestaudio',
+    IPv6Block: '2001:2::/48'
+}
 
 app.get('/youtube/:videoId', cors(), (req, res) => {
     const videoId = req.params.videoId;
@@ -32,7 +29,7 @@ app.get('/youtube/:videoId', cors(), (req, res) => {
     // }).on('error', (err) => res.status(500).send(err))
     //     .pipe(res);
     try {
-        ytdl(`https://www.youtube.com/watch?v=${videoId}`, { quality: 'lowestaudio' })
+        ytdl(`https://www.youtube.com/watch?v=${videoId}`, ytdlOptions)
             .on('error', (err) => {
                 console.log('error: ', err)
                 throw err
