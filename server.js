@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 
 const ytdlOptions = {
     quality: 'lowestaudio',
-    IPv6Block: '2001:2::/48'
+    IPv6Block: '2001:0200::/23'
 }
 
 app.get('/youtube/:videoId', cors(), (req, res) => {
