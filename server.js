@@ -29,9 +29,13 @@ app.get('/youtube/:videoId', cors(), (req, res) => {
     //     .pipe(res);
     try {
         ytdl(`https://www.youtube.com/watch?v=${videoId}`, ytdlOptions)
-            .on('error', (err) => {
+            .on('error', error => {
                 //console.log('error: ', err)
-                throw err
+                throw error
+            })
+            .on('response', response => {
+                // Passing the content length header along
+                res.setHeader("content-length", response.headers["content-length"])
             })
             .pipe(res);
     } catch (exception) {
